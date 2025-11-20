@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Cheval Blanc Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%; /* S'assurer que le html et le body prennent toute la hauteur */
+        }
+        body {
+            font-family: 'Jost', sans-serif;
+            background-color: #ffffff; /* Fond blanc pour l'app */
+        }
+        .font-serif-display {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        /* SUPPRESSION des styles .phone-mockup, .notch, .status-bar */
+
+        .page-content {
+            flex-grow: 1;
+            overflow-y: auto;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;  /* Internet Explorer 10+ */
+            padding-top: env(safe-area-inset-top, 1rem); /* Ajout de padding pour le VRAI notch */
+            /* padding-bottom: 6rem; Empêche le contenu de se cacher sous la nav */
+            padding-bottom: env(safe-area-inset-bottom, 1rem); /* Assure un padding en bas */
+        }
+        .page-content::-webkit-scrollbar { 
+            display: none;  /* Safari and Chrome */
+        }
+        /* SUPPRESSION des styles .nav-bar */
+        /* SUPPRESSION des styles .nav-link.active */
+        .modal {
+            transition: opacity 0.3s ease;
+        }
+        .time-slot.selected, .date-slot.selected {
+            background-color: #1a1a1a;
+            color: white;
+        }
+        .date-slot.selected span:first-child {
+            color: white;
+        }
+        /* Ajout de padding pour les modaux */
+        .modal > div[class*="rounded-t-"] {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+</head>
+<body class="flex flex-col h-full"> <!-- Modification du body pour être le conteneur flex principal --><!-- SUPPRESSION du div.phone-mockup, du div.notch et du header.status-bar --><main class="flex-grow flex flex-col overflow-hidden"> <!-- pt-16 supprimé, overflow-hidden ajouté --><!-- Page: Accueil --><div id="page-home" class="page-content">
+            <div class="px-6 py-4">
+                    <p class="text-gray-500 text-lg">Madame, Monsieur, Bonjour :</p>
+                    <h1 class="font-serif-display text-4xl text-gray-800 leading-tight">Bienvenue à Cheval Blanc Paris</h1>
+                </div>
+
+                <div class="px-6 mt-4">
+                    <div class="rounded-2xl shadow-lg overflow-hidden relative">
+                        <!--  MODIFICATION : Collez votre nouveau lien d'image (obtenu par clic droit > Copier l'adresse de l'image) dans l'attribut src ci-dessous -->
+                        <img src=https://tse1.mm.bing.net/th/id/OIP.aszNUZkw2HNA4CC4Mny9PQHaE8?rs=1&pid=ImgDetMain&o=7&rm=3" class="w-full h-56 object-cover" alt="Vue élégante d'un salon Cheval Blanc">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-5">
+                            <h2 class="font-serif-display text-white text-3xl">Cheval Blanc Traversée</h2>
+                            <p class="text-white/80 text-sm mt-1">Une invitation au voyage sensoriel.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 px-6">
+                    <h3 class="font-serif-display text-2xl text-gray-800">Choisissez votre destination</h3>
+                    <div class="flex space-x-4 mt-4 overflow-x-auto pb-4">
+                        <div class="destination-card flex-shrink-0 w-36 text-center cursor-pointer" data-destination="Courchevel">
+                            <!-- Image Courchevel -->
+                            <!-- MODIFICATION : Collez votre nouveau lien d'image (obtenu par clic droit > Copier l'adresse de l'image) dans l'attribut src ci-dessous -->
+                            <div class="rounded-full h-24 w-24 mx-auto overflow-hidden shadow-md border-2 border-white"><img src=https://tse1.mm.bing.net/th/id/OIP.MFQRLpVe5LPm9cbfRp3Y8QHaFI?rs=1&pid=ImgDetMain&o=7&rm=3 class="h-full w-full object-cover" alt="Chalet enneigé à Courchevel"></div>
+                            <p class="mt-2 font-semibold text-gray-700">Courchevel</p>
+                        </div>
+                        <div class="destination-card flex-shrink-0 w-36 text-center cursor-pointer" data-destination="St-Barth">
+                            <!-- Image St-Barth -->
+                            <!-- MODIFICATION : Collez votre nouveau lien d'image (obtenu par clic droit > Copier l'adresse de l'image) dans l'attribut src ci-dessous -->
+                            <div class="rounded-full h-24 w-24 mx-auto overflow-hidden shadow-md border-2 border-white"><img src=https://tse4.mm.bing.net/th/id/OIP.SW0fyJnJcg_L7XHycg-vZQHaFD?pid=ImgDet&w=178&h=121&c=7&dpr=1,5&o=7&rm=3 class="h-full w-full object-cover" alt="Plage paradisiaque de St-Barth"></div>
+                            <p class="mt-2 font-semibold text-gray-700">St-Barth</p>
+                        </div>
+                        <div class="destination-card flex-shrink-0 w-36 text-center cursor-pointer" data-destination="Maldives">
+                            <!-- Image Maldives (celle-ci fonctionnait déjà) --><div class="rounded-full h-24 w-24 mx-auto overflow-hidden shadow-md border-2 border-white"><img src="https://images.unsplash.com/photo-1512100356356-de1b84283e18?q=80&w=2875&auto=format&fit=crop" class="h-full w-full object-cover" alt="Bungalows sur pilotis aux Maldives"></div>
+                            <p class="mt-2 font-semibold text-gray-700">Maldives</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 px-6">
+                    <h3 class="font-serif-display text-2xl text-gray-800">Votre Carnet de Voyage</h3>
+                     <div class="mt-4 rounded-2xl p-5 flex items-center bg-white shadow-lg">
+                         <div class="w-24 h-24 rounded-lg bg-gray-200 overflow-hidden flex-shrink-0">
+                            <!-- Image NFT Éclat de Randheli (celle-ci fonctionnait déjà) --><img src="https://images.unsplash.com/photo-1552083375-1447ce886485?q=80&w=2940&auto=format&fit=crop" class="w-full h-full object-cover" alt="NFT Éclat de Randheli">
+                         </div>
+                         <div class="ml-4">
+                             <p class="text-sm text-gray-500">Dernier Souvenir</p>
+                             <p class="font-semibold text-lg text-gray-800">Éclat de Randheli</p>
+                             <a href="#" id="link-collection" class="text-sm text-gray-700 font-semibold mt-1 inline-block">Voir la collection &rarr;</a>
+                         </div>
+                     </div>
+                </div>
+                
+                <!-- Bloc Nos Partenaires --><div class="mt-8 px-6">
+                    <h3 class="font-serif-display text-2xl text-gray-800">Nos Partenaires</h3>
+                    <div class="mt-4 grid grid-cols-2 gap-4">
+                        
+                        <!-- Partenaire 1: Dom Pérignon -->
+                        <div class="rounded-2xl shadow-lg h-32 p-4 bg-white flex flex-col justify-between relative overflow-hidden">
+                            <!-- Image de fond avec opacité -->
+                            <img src=https://tse4.mm.bing.net/th/id/OIP.Fl8HIvSNsWn4VDGoIxqc1gHaHa?rs=1&pid=ImgDetMain&o=7&rm=3 
+                                 class="absolute inset-0 w-full h-full object-cover opacity-100 z-0" alt="Fond Dom Pérignon">
+                            <!-- Contenu -->
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Dom_P%C3%A9rignon_logo.svg/2560px-Dom_P%C3%A9rignon_logo.svg.png" 
+                                 onerror="this.src='https://placehold.co/150x40/000000/FFFFFF?text=Dom+Pérignon&font=cormorant'" 
+                                 class="h-6 object-contain self-start relative z-10" 
+                                 alt="Logo Dom Pérignon">
+                           
+                        </div>
+
+                        <!-- Partenaire 2: Dior -->
+                        <div class="rounded-2xl shadow-lg h-32 p-4 bg-white flex flex-col justify-between relative overflow-hidden">
+                            <!-- Image de fond avec opacité -->
+                            <img src=https://tse3.mm.bing.net/th/id/OIP.6wOJeIoMKW3aDM4Raf7S7AHaFS?pid=ImgDet&w=474&h=338&rs=1&o=7&rm=3
+                                 class="absolute inset-0 w-full h-full object-cover opacity-100 z-0" alt="Fond Dior">
+                            <!-- Contenu -->
+                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Dior_logo.svg/2560px-Dior_logo.svg.png" 
+                                 onerror="this.src='https://placehold.co/150x40/000000/FFFFFF?text=Dior&font=cormorant'" 
+                                 class="h-6 object-contain self-start relative z-10" 
+                                 alt="Logo Dior">
+                            
+                        </div>
+
+                        <!-- Partenaire 3: Guerlain -->
+                        <div class="rounded-2xl shadow-lg h-32 p-4 bg-white flex flex-col justify-between relative overflow-hidden">
+                            <!-- Image de fond avec opacité -->
+                            <img src=https://www.guerlain.com/dw/image/v2/BDCZ_PRD/on/demandware.static/-/Library-Sites-Guerlain_SharedLibrary/default/dw561270a2/Maison_Guerlain/HISTORY/HISTORY_SQUARE-IMAGE_CONTENT-PAGE_2022-AA.jpg?sw=1920
+                                 class="absolute inset-0 w-full h-full object-cover opacity-100 z-0" alt="Fond Guerlain">
+                            <!-- Contenu -->
+                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Guerlain_logo.svg/2560px-Guerlain_logo.svg.png" 
+                                 onerror="this.src='https://placehold.co/150x40/000000/FFFFFF?text=Guerlain&font=cormorant'" 
+                                 class="h-6 object-contain self-start relative z-10" 
+                                 alt="Logo Guerlain">
+                           
+                        </div>
+
+                        <!-- Partenaire 4: Fondation Louis Vuitton -->
+                        <div class="rounded-2xl shadow-lg h-32 p-4 bg-white flex flex-col justify-between relative overflow-hidden">
+                            <!-- Image de fond avec opacité -->
+                            <img src=https://th.bing.com/th/id/OIP.wEPJQ6wMcrKmD4eFpDjdsQHaEq?w=301&h=189&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3
+                                 class="absolute inset-0 w-full h-full object-cover opacity-100 z-0" alt="Fond Fondation LV">
+                            <!-- Contenu -->
+                             <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/b/b3/Logo_Fondation_Louis_Vuitton_2016.svg/1200px-Logo_Fondation_Louis_Vuitton_2016.svg.png" 
+                                 onerror="this.src='https://placehold.co/150x40/000000/FFFFFF?text=Fondation+LV&font=cormorant'" 
+                                 class="h-8 object-contain self-start relative z-10" 
+                                 alt="Logo Fondation Louis Vuitton">
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 rounded-2xl p-5 h-24 bg-gray-100 shadow-inner flex items-center justify-center">
+                        <p class="text-gray-500 text-center text-sm">...et d'autres Maisons d'exception.</p>
+                    </div>
+                </div>
+
+                <div class="h-8"></div>
+            </div>
+
+            <!-- Page: Collection (NFTs) --><div id="page-collection" class="page-content hidden">
+                <div class="px-6 py-4">
+                    <a href="#" class="back-link text-gray-600 font-semibold"><i class="fas fa-chevron-left mr-2"></i>Retour</a>
+                    <h1 class="font-serif-display text-4xl text-gray-800 leading-tight mt-4">Ma Collection</h1>
+                </div>
+                <div class="px-6 grid grid-cols-2 gap-4">
+                    <!-- NFT Card Example --><div class="rounded-xl overflow-hidden shadow-lg">
+                         <!-- Image NFT Aurore de St-Barth -->
+                         <!-- MODIFICATION : Collez votre nouveau lien d'image (obtenu par clic droit > Copier l'adresse de l'image) dans l'attribut src ci-dessous -->
+                         <img src=https://img.freepik.com/photos-premium/peinture-paysage-mer-tropicale-aquarelle-illustration-plage-maldives-generee-par-ai_779330-2118.jpg?w=2000 class="w-full h-40 object-cover" alt="NFT Aurore de St-Barth">
+                        <div class="p-3 bg-white">
+                            <p class="font-semibold text-gray-800">Éclat de Randheli</p>
+                            <p class="text-sm text-gray-500">18 Oct. 2025</p>
+                        </div>
+                    </div>
+                    <!-- NFT Card Example --><div class="rounded-xl overflow-hidden shadow-lg">
+                         <!-- Image NFT Aurore de St-Barth --><img src=https://a.1stdibscdn.com/ellie-hesse-paintings-costa-rica-pura-vida-contemporary-oil-townscape-painting-for-sale/a_7383/a_69319521603287489296/Costa_Rica_Pura_Vida_master.jpg?disable=upscale&auto=webp&quality=60&width=1400 class="w-full h-40 object-cover" alt="NFT Aurore de St-Barth">
+                        <div class="p-3 bg-white">
+                            <p class="font-semibold text-gray-800">Aurore de St-Barth</p>
+                            <p class="text-sm text-gray-500">12 Sep. 2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Other Pages (Placeholders) SUPPRIMÉES --></main>
+
+        <!-- NAV BAR SUPPRIMÉE --><!-- Modal de réservation --><div id="modal-reservation" class="modal absolute inset-0 bg-black bg-opacity-50 flex items-end justify-center hidden opacity-0">
+            <div class="bg-white rounded-t-3xl shadow-xl p-6 w-full transform transition-transform duration-300 translate-y-full">
+                <div class="w-12 h-1.5 bg-gray-300 rounded-full mx-auto mb-4"></div>
+                <h3 id="modal-title" class="font-serif-display text-3xl text-gray-800 text-center">Réserver une expérience</h3>
+                <div class="mt-6">
+                    <p class="font-semibold text-gray-700">Choisissez une date :</p>
+                    <div class="flex space-x-3 mt-3 overflow-x-auto pb-2">
+                        <button class="date-slot flex-shrink-0 w-20 text-center py-3 bg-gray-100 rounded-lg selected">
+                            <span class="block text-xs text-gray-500">Lun</span>
+                            <span class="font-semibold text-lg">24</span>
+                        </button>
+                        <button class="date-slot flex-shrink-0 w-20 text-center py-3 bg-gray-100 rounded-lg">
+                            <span class="block text-xs text-gray-500">Mar</span>
+                            <span class="font-semibold text-lg">25</span>
+                        </button>
+                        <button class="date-slot flex-shrink-0 w-20 text-center py-3 bg-gray-100 rounded-lg">
+                            <span class="block text-xs text-gray-500">Mer</span>
+                            <span class="font-semibold text-lg">26</span>
+                        </button>
+                        <button class="date-slot flex-shrink-0 w-20 text-center py-3 bg-gray-100 rounded-lg">
+                            <span class="block text-xs text-gray-500">Jeu</span>
+                            <span class="font-semibold text-lg">27</span>
+                        </button>
+                        <button class="date-slot flex-shrink-0 w-20 text-center py-3 bg-gray-100 rounded-lg">
+                            <span class="block text-xs text-gray-500">Ven</span>
+                            <span class="font-semibold text-lg">28</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <p class="font-semibold text-gray-700">Choisissez un créneau :</p>
+                    <div class="grid grid-cols-3 gap-2 mt-2">
+                        <button class="time-slot py-3 bg-gray-100 rounded-lg">17:00</button>
+                        <button class="time-slot py-3 bg-gray-100 rounded-lg selected">19:00</button>
+                        <button class="time-slot py-3 bg-gray-100 rounded-lg">21:00</button>
+                    </div>
+                </div>
+                <div class="mt-8 flex flex-col space-y-3">
+                    <button id="btn-confirm-booking" class="w-full bg-gray-800 text-white py-4 rounded-xl text-lg font-semibold">Confirmer la réservation</button>
+                    <button id="btn-close-modal" class="w-full text-gray-600 py-2 rounded-xl text-md font-semibold">Annuler</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const pages = document.querySelectorAll('.page-content');
+        // SUPPRESSION de navLinks
+        const collectionLink = document.getElementById('link-collection');
+        const backLinks = document.querySelectorAll('.back-link');
+        
+        const destinationCards = document.querySelectorAll('.destination-card');
+        const closeModalBtn = document.getElementById('btn-close-modal');
+        const confirmBookingBtn = document.getElementById('btn-confirm-booking'); // Nouveau bouton
+        const reservationModal = document.getElementById('modal-reservation');
+        const reservationModalContent = reservationModal.querySelector('div');
+        const modalTitle = document.getElementById('modal-title');
+        const timeSlots = document.querySelectorAll('.time-slot');
+        const dateSlots = document.querySelectorAll('.date-slot');
+
+        // Function to switch pages
+        const showPage = (pageId) => {
+            pages.forEach(page => {
+                page.classList.add('hidden');
+            });
+            const activePage = document.getElementById(`page-${pageId}`);
+            if (activePage) {
+                activePage.classList.remove('hidden');
+            }
+            
+            // SUPPRESSION de la boucle navLinks.forEach
+        };
+
+        // Navigation links event listeners
+        // SUPPRESSION du bloc navLinks.forEach
+
+        collectionLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('collection');
+        });
+
+        backLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage('home'); 
+            });
+        });
+        
+        // Modal logic
+        const openModal = (destination) => {
+            modalTitle.textContent = `Voyage à ${destination}`;
+            reservationModal.classList.remove('hidden');
+            setTimeout(() => {
+                reservationModal.classList.remove('opacity-0');
+                reservationModalContent.classList.remove('translate-y-full');
+            }, 10);
+        };
+        
+        const closeModal = () => {
+            reservationModal.classList.add('opacity-0');
+            reservationModalContent.classList.add('translate-y-full');
+            setTimeout(() => {
+                reservationModal.classList.add('hidden');
+            }, 300);
+        };
+
+        destinationCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const destination = card.dataset.destination;
+                openModal(destination);
+            });
+        });
+
+        closeModalBtn.addEventListener('click', closeModal);
+        confirmBookingBtn.addEventListener('click', closeModal); // Ferme le modal au clic sur Confirmer
+        
+        reservationModal.addEventListener('click', (e) => {
+            if (e.target === reservationModal) {
+                closeModal();
+            }
+        });
+        
+        timeSlots.forEach(slot => {
+            slot.addEventListener('click', () => {
+                timeSlots.forEach(s => s.classList.remove('selected'));
+                slot.classList.add('selected');
+            })
+        });
+        
+        dateSlots.forEach(slot => {
+            slot.addEventListener('click', () => {
+                dateSlots.forEach(s => s.classList.remove('selected'));
+                slot.classList.add('selected');
+            })
+        });
+    });
+</script>
+
+</body>
+</html>
+            
